@@ -1,0 +1,15 @@
+.search-anm {
+  animation: anm 0.4s ease-in;
+}
+
+@keyframes anm {
+  0% {
+    width: 2rem;
+  }
+  50% {
+    width: 8rem;
+  }
+  100% {
+    width: 16rem;
+  }
+}

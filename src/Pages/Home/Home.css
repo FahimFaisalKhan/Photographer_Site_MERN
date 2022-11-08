@@ -1,0 +1,10 @@
+.img-right-animation {
+  transform: translateX(0.75rem);
+  opacity: 0;
+  transition: all 0.2s;
+}
+.img-left-animation {
+  transform: translateX(-0.75rem);
+  opacity: 0;
+  transition: all 0.2s;
+}
