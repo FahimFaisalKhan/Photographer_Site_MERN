@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Card, Carousel, Rating } from "react-daisyui";
 import { Link } from "react-router-dom";
 import RatingStar from "../Rating/RatingStar";
-import "./PopServices.module.css";
+import styles from "./PopServices.module.css";
 const Carsl = ({ services }) => {
   return (
     <div className="container mx-auto mt-64">
@@ -13,8 +13,8 @@ const Carsl = ({ services }) => {
         {services.map((ser, index) => {
           return (
             <div>
-              <Card side="lg" className={index === 1 && `flex-reverse`}>
-                <figure className="rounded-none">
+              <Card side="lg" className={index === 1 && styles.reverse}>
+                <figure className={styles.figure}>
                   <img
                     src={`http://localhost:5000/images/${ser.picture}.jpg`}
                     alt="Shoes"
@@ -22,7 +22,7 @@ const Carsl = ({ services }) => {
                       index === 1
                         ? "rounded-r-2xl rounded-l-none"
                         : "rounded-l-2xl rounded-r-none"
-                    } h-full`}
+                    } h-full `}
                   />
                 </figure>
 
@@ -30,14 +30,25 @@ const Carsl = ({ services }) => {
                   <Card.Title className="text-2xl" tag="h2">
                     {ser.name}
                   </Card.Title>
-                  <p>{ser.description}</p>
+                  <p className="min-w-[70rem]">
+                    {ser.description.split(" ").length >= 100
+                      ? ser.description.split(" ").splice(0, 100).join(" ") +
+                        "....."
+                      : ser.description}
+                  </p>
                   <p className="font-semibold text-primary">
                     Price: ${ser.price}
                   </p>
                   <p className="font-medium">Rating:</p>
                   <RatingStar rating={ser.reating}></RatingStar>
-                  <Card.Actions className="justify-end">
-                    <Button>Buy Now</Button>
+                  <Card.Actions
+                    className={`${
+                      index === 1 ? "justify-start" : "justify-end"
+                    } mt-5 `}
+                  >
+                    <Link to={`/services/${ser._id}`}>
+                      <Button className="capitalize">View Details</Button>
+                    </Link>
                   </Card.Actions>
                 </Card.Body>
               </Card>

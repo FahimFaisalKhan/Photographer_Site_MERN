@@ -1,6 +1,6 @@
-.flex-reverse {
+.reverse {
   flex-direction: row-reverse !important;
 }
-.card figure {
+.figure {
   border-radius: 0 !important;
 }

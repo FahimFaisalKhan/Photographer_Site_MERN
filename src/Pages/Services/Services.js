@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card, Pagination, Select, Tooltip } from "react-daisyui";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import RatingStar from "../../Components/Rating/RatingStar";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import { GrNext, GrPrevious } from "react-icons/gr";
@@ -82,10 +82,17 @@ const Services = () => {
                 <Card.Body>
                   <Card.Title tag="h2">{ser.name}</Card.Title>
                   <p className="text-justify w-[40rem] border-r-2 pr-3">
-                    {ser.description}
+                    {ser.description.split(" ").length >= 100
+                      ? ser.description.split(" ").splice(0, 100).join(" ") +
+                        "....."
+                      : ser.description}
                   </p>
                   <Card.Actions className="justify-start">
-                    <Button color="primary">Buy Now</Button>
+                    <Link to={`/services/${ser._id}`}>
+                      <Button className="capitalize" color="primary">
+                        View Details
+                      </Button>
+                    </Link>
                   </Card.Actions>
                 </Card.Body>
                 <Card.Body>
