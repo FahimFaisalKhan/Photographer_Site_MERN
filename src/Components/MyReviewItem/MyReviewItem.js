@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Button, Textarea } from "react-daisyui";
 import { GrEdit } from "react-icons/gr";
 import { MdDelete } from "react-icons/md";
-const MyReviewItem = ({ rev }) => {
+
+const MyReviewItem = ({ rev, setMyRevs, myRevs, toast }) => {
   const { _id, review, serviceId, serviceName } = rev;
 
   const [textAreaVisible, setTextAreaVisible] = useState(false);
   const [currentReview, setCurrentReview] = useState(review);
-  const handleEditPost = (event) => {
+  const handleEditReview = (event) => {
     event.preventDefault();
 
     setTextAreaVisible(!textAreaVisible);
@@ -27,8 +28,33 @@ const MyReviewItem = ({ rev }) => {
         }),
       })
         .then((res) => res.json())
-        .then((data) => console.log(data));
+        .then((data) => {
+          if (data.acknowledged) {
+            setCurrentReview(editedRev);
+          }
+        });
     }
+  };
+
+  const handleDeleteReview = () => {
+    fetch(`http://localhost:5000/deleteReview`, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        revToDelId: _id,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.acknowledged && data.deletedCount > 0) {
+          const newMyRevs = myRevs.filter((r) => r._id !== _id);
+          setMyRevs([...newMyRevs]);
+          toast("Review Successfully deleted");
+        }
+      });
   };
   return (
     <div className="flex justify-center py-24   border-t-2 bg-base-300/20 relative">
@@ -39,7 +65,7 @@ const MyReviewItem = ({ rev }) => {
         <p className={` pr-44 ${textAreaVisible && "hidden"} `}>
           {currentReview}
         </p>
-        <form onSubmit={handleEditPost} action="">
+        <form onSubmit={handleEditReview} action="">
           <Textarea
             className={`w-3/5 pr-44 min-h-[10rem] ${
               !textAreaVisible && "hidden"
@@ -63,7 +89,10 @@ const MyReviewItem = ({ rev }) => {
         </form>
       </div>
 
-      <Button className="absolute bottom-2 right-3 bg-transparent hover:bg-base-300 border-none text-base text-base-content capitalize">
+      <Button
+        onClick={handleDeleteReview}
+        className="absolute bottom-2 right-3 bg-transparent hover:bg-base-300 border-none text-base text-base-content capitalize"
+      >
         Delete <MdDelete size={40} color="black" />
       </Button>
     </div>
