@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { Button, Dropdown, Input, Menu, Navbar } from "react-daisyui";
+import React, { useContext, useEffect, useState } from "react";
+import { Avatar, Button, Dropdown, Input, Menu, Navbar } from "react-daisyui";
 import { Link } from "react-router-dom";
 import { BiSearch } from "react-icons/bi";
 import "./Navigation.css";
+import { MyAuthContext } from "../../Contexts/AuthContext/AuthContext";
 const Navigation = () => {
+  const { signOutUser, user } = useContext(MyAuthContext);
+
   const [searchFieldHidden, setSearchFieldHidden] = useState(true);
   useEffect(() => {
     const field = document.getElementById("nav-search-field");
@@ -20,6 +23,13 @@ const Navigation = () => {
     <Navbar className="container mx-auto">
       <Navbar.Start className="hidden lg:flex">
         <Menu horizontal className="p-0">
+          {user && (
+            <Menu.Item>
+              <Link to={"/"}>
+                <Avatar shape="circle" size="xs" src={user.photoURL} />
+              </Link>
+            </Menu.Item>
+          )}
           <Menu.Item>
             <Link to={"/"} className="">
               Home
@@ -28,12 +38,28 @@ const Navigation = () => {
           <Menu.Item>
             <Link to={"/services"}>Services</Link>
           </Menu.Item>
-          <Menu.Item>
-            <Link>Sign in</Link>
-          </Menu.Item>
-          <Menu.Item>
-            <Link>Sign up</Link>
-          </Menu.Item>
+          {!user ? (
+            <>
+              <Menu.Item>
+                <Link to={"/signin"}>Sign in</Link>
+              </Menu.Item>
+              <Menu.Item>
+                <Link to={"/signup"}>Sign up</Link>
+              </Menu.Item>
+            </>
+          ) : (
+            <>
+              <Menu.Item>
+                <Link to={"/myreviews"}>My Reviews</Link>
+              </Menu.Item>
+              <Menu.Item>
+                <Link to={"/"}>Add Services</Link>
+              </Menu.Item>
+              <Menu.Item onClick={signOutUser}>
+                <Link to={"/"}>Sign out</Link>
+              </Menu.Item>
+            </>
+          )}
         </Menu>
       </Navbar.Start>
       <Navbar.Center>

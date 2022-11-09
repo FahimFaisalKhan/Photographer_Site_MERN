@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Hero, Stats } from "react-daisyui";
 import { useLoaderData } from "react-router-dom";
 import ServiceXtraImages from "../../Components/ServiceXtraImages/ServiceXtraImages";
 import { VscDebugBreakpointLogUnverified } from "react-icons/vsc";
 import RatingStar from "../../Components/Rating/RatingStar";
 import ServiceReviews from "../../Components/ServiceReviews/ServiceReviews";
+import { MyAuthContext } from "../../Contexts/AuthContext/AuthContext";
 const ServiceDetails = () => {
+  const { loading } = useContext(MyAuthContext);
+  console.log(loading);
+  const [allReviews, setAllReviews] = useState([]);
   const data = useLoaderData();
-  const { name, picture, description, price, reating } = data;
-
+  const { name, picture, description, price, reating, _id } = data;
+  if (loading) {
+    return <div>Loading....</div>;
+  }
   return (
     <div>
       <Hero
@@ -52,13 +58,18 @@ const ServiceDetails = () => {
           <Stats.Stat className="gap-2">
             <Stats.Stat.Item variant="title">Total Reviews</Stats.Stat.Item>
             <Stats.Stat.Item variant="value">
-              TArtari dynamically add kor vai
+              {allReviews.length}
             </Stats.Stat.Item>
           </Stats.Stat>
         </Stats>
       </section>
       <section className="mx-52 my-32">
-        <ServiceReviews />
+        <ServiceReviews
+          allReviews={allReviews}
+          setAllReviews={setAllReviews}
+          serviceId={_id}
+          serviceName={name}
+        />
       </section>
     </div>
   );
