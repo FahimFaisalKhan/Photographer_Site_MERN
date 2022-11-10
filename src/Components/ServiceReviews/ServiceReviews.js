@@ -15,7 +15,7 @@ const ServiceReviews = ({
 
   useEffect(() => {
     fetch(
-      `https://backend-fahimfaisalkhan.vercel.app/reviews?serviceId=${serviceId}&email=${user?.email}`,
+      `https://backend-fahimfaisalkhan.vercel.app/getReviews?serviceId=${serviceId}`,
       {
         headers: {
           "content-type": "application/json",
