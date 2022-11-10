@@ -36,15 +36,15 @@ const ServiceDetails = () => {
         </Hero.Content>
       </Hero>
       <ServiceXtraImages name={name} data={data} />
-      <section className="container mx-auto px-32 my-24">
+      <section className="container mx-auto md:px-12 xl:px-32 my-24">
         <div className="flex text-3xl font-semibold mb-5 items-center gap-2">
           <VscDebugBreakpointLogUnverified color="rgb(147 51 234)" />
-          <h1>What is {name} Photography?</h1>
+          <h1>What is {name} ?</h1>
         </div>
 
         <p className="border-l-2 border-purple-600 pl-4 ml-3">{description}</p>
       </section>
-      <section className="container mx-auto px-32 my-24">
+      <section className="container mx-auto xl:px-32 md:px-12 my-24">
         <Stats className="stats-vertical lg:stats-horizontal shadow container mx-auto ">
           <Stats.Stat className="gap-2">
             <Stats.Stat.Item variant="title">Price</Stats.Stat.Item>
@@ -67,7 +67,7 @@ const ServiceDetails = () => {
           </Stats.Stat>
         </Stats>
       </section>
-      <section className="mx-52 my-32">
+      <section className="xl:mx-52 my-32">
         <ServiceReviews
           allReviews={allReviews}
           setAllReviews={setAllReviews}

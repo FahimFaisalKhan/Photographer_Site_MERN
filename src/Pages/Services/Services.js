@@ -48,19 +48,19 @@ const Services = () => {
   return (
     <section className="container mx-auto">
       <header>
-        <h3 className="text-4xl font-semibold w-6/12 leading-normal mt-20">
+        <h3 className="text-2xl 2xl:text-4xl font-semibold w-full xl:w-6/12 leading-normal  mt-20 px-3  xl:px-0">
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum
           expedita excepturi neque dicta voluptates recusandae asperiores quia
           tempore. Non quaerat tenetur sed voluptatem quas voluptates.
         </h3>
       </header>
 
-      <h3 className="mt-24 mb-2 font-medium">
+      <h3 className="mt-24 mb-2 font-medium px-3 xl:px-0">
         Select number of services to show in one page:
       </h3>
       <select
         onChange={handlePageNumber}
-        className="select select-bordered select-xs w-full max-w-xs  mb-5"
+        className="select select-bordered select-xs xl:w-full max-w-xs mx-3 xl:mx-0 mb-5"
       >
         <option selected value={5}>
           5
@@ -75,7 +75,7 @@ const Services = () => {
               <Card
                 side="lg"
                 bordered={false}
-                className="shadow-inner  hover:border-4 rounded-md transition-all max-h-[80vh]"
+                className="shadow-inner  hover:border-4 rounded-md transition-all xl:max-h-[80vh] mx-3 xl:mx-0"
                 key={ser._id}
               >
                 <PhotoView
@@ -93,13 +93,13 @@ const Services = () => {
                         : ser.picture
                     }
                     alt="Shoes"
-                    className="h-full min-w-[60rem] cursor-pointer"
+                    className="xl:h-full xl:min-w-[60rem] cursor-pointer"
                   />
                 </PhotoView>
 
-                <Card.Body>
+                <Card.Body className="px-3 xl:px-6">
                   <Card.Title tag="h2">{ser.name}</Card.Title>
-                  <p className="text-justify w-[40rem] border-r-2 pr-3">
+                  <p className="text-justify xl:w-[40rem] xl:border-r-2 pr-3">
                     {ser.description.split(" ").length >= 100
                       ? ser.description.split(" ").splice(0, 100).join(" ") +
                         "....."
@@ -113,7 +113,7 @@ const Services = () => {
                     </Link>
                   </Card.Actions>
                 </Card.Body>
-                <Card.Body>
+                <Card.Body className="px-3 xl:px-6">
                   <div className="px-2">
                     <p className="font-medium mb-3 text-center">
                       Rating: {ser.reating}
@@ -121,7 +121,7 @@ const Services = () => {
                     <RatingStar rating={ser.reating} />
                   </div>
 
-                  <p className="py-6 px-2 font-semibold text-primary text-2xl text-center">
+                  <p className="py-6 px-2 font-semibold text-primary text-xl text-center">
                     Price: ${ser.price}
                   </p>
                 </Card.Body>

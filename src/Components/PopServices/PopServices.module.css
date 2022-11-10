@@ -1,6 +1,8 @@
-.reverse {
-  flex-direction: row-reverse !important;
-}
-.figure {
-  border-radius: 0 !important;
+@media screen and (min-width: 800px) {
+  .reverse {
+    flex-direction: row-reverse !important;
+  }
+  .figure {
+    border-radius: 0 !important;
+  }
 }

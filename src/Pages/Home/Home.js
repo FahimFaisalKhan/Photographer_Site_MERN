@@ -46,8 +46,8 @@ const Home = () => {
 
   return (
     <div>
-      <div className="flex container mx-auto">
-        <div className="w-[20%] flex flex-col gap-2 justify-center">
+      <div className="flex flex-col container mx-auto xl:flex-row">
+        <div className=" xl:w-[20%] flex flex-col gap-2 justify-center order-2 xl:order-none md:mt-32 lf:mt-auto px-5 md:px-12">
           <div className="flex">
             <FaSquareFull size={25} className="text-base-content block " />
             <FaSquareFull size={25} className="text-base-300 block ml-2" />
@@ -85,14 +85,14 @@ const Home = () => {
           </Avatar.Group>
           <p className="text-sm font-semibold">400+ Customer reviews</p>
         </div>
-        <div className="relative grow">
+        <div className="relative grow order-1 xl:order-none">
           <h1 className="text-center font-bold text-6xl mt-8">
             Fahim's Capture
           </h1>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="100%"
-            height="600"
+            height="400"
             version="1.1"
             viewBox="0 0 900 600"
           >
@@ -116,10 +116,10 @@ const Home = () => {
           <img
             src={photographer}
             alt=""
-            className="absolute top-[54.5%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-[44%] rounded-full"
+            className="absolute  top-[54%] sm:top-[54.5%] md:top-[60%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-[80%] sm:w-[44%] rounded-full"
           />
         </div>
-        <div className="w-[20%] flex flex-col justify-center gap-2">
+        <div className="xl:w-[20%] flex flex-col justify-center gap-2 order-3 xl:order-none px-5 md:px-12">
           <h1 className="text-2xl font-bold">Latest Projects</h1>
           <div>
             <div className="flex gap-3 w-full overflow-hidden">
@@ -153,7 +153,7 @@ const Home = () => {
             </div>
           </div>
 
-          <Stats className="stats-vertical lg:stats-horizontal  mt-12">
+          <Stats className="stats-vertical   mt-12  ">
             <Stats.Stat className="pl-0">
               <Stats.Stat.Item variant="value">500+</Stats.Stat.Item>
               <Stats.Stat.Item variant="title" className="text-sm">
@@ -161,7 +161,7 @@ const Home = () => {
               </Stats.Stat.Item>
             </Stats.Stat>
 
-            <Stats.Stat>
+            <Stats.Stat className="pl-0   ">
               <Stats.Stat.Item variant="value">10+</Stats.Stat.Item>
               <Stats.Stat.Item variant="title" className="text-sm">
                 Awards recived

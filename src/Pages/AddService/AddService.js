@@ -41,6 +41,7 @@ const AddService = () => {
       .then((data) => {
         if (data.acknowledged) {
           toast("Successfully added a Service, Check services page.");
+          form.reset();
         }
       });
     console.log(serToAdd);
@@ -59,7 +60,7 @@ const AddService = () => {
           <div className="flex flex-col-reverse w-full px-0 mx-auto md:flex-row md:gap-8">
             <div className="flex flex-col md:w-full">
               <h2 className="mb-20 font-bold md:text-4xl text-heading self-center">
-                Add a service
+                Add a new service
               </h2>
               <form
                 onSubmit={handleAddService}
@@ -204,9 +205,9 @@ const AddService = () => {
                   <div className="mt-6">
                     <Button
                       type="submit"
-                      className="w-full px-6 py-2  border-none"
+                      className="w-full px-6 py-2  border-none capitalize"
                     >
-                      Process
+                      Add
                     </Button>
                   </div>
                 </div>

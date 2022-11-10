@@ -5,7 +5,7 @@ import RatingStar from "../Rating/RatingStar";
 import styles from "./PopServices.module.css";
 const Carsl = ({ services }) => {
   return (
-    <div className="container mx-auto mt-64">
+    <div className="container mx-auto mt-64 px-2 2xl:px-0">
       <h1 className="text-center text-6xl font-semibold mb-16">
         My top services
       </h1>
@@ -26,7 +26,7 @@ const Carsl = ({ services }) => {
                   />
                 </figure>
 
-                <Card.Body className="">
+                <Card.Body className="px-3 md:px-5 lg: 2xl:px-10">
                   <Card.Title className="text-2xl" tag="h2">
                     {ser.name}
                   </Card.Title>

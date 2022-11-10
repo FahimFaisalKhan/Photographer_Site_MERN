@@ -83,25 +83,36 @@ const ServiceReviews = ({
       </div>
 
       {user ? (
-        <section className="my-24">
-          <form onSubmit={handleAddReview} className="flex flex-col" action="">
+        <section className="my-24  ">
+          <form
+            onSubmit={handleAddReview}
+            className="flex flex-col w-72 ml-[-12rem] sm:ml-[-10rem] sm:w-96 xl:w-[50rem] xl:ml-0 2xl:w-[60rem] 2xl:ml-[27rem]"
+            action=""
+          >
             <label className="text-xl mb-4 ml-5" htmlFor="review">
               <i>Add a Review</i>
             </label>
 
-            <Textarea className="w-full min-h-[15rem]" name="review" />
+            <Textarea className="w-full xl:min-h-[15rem]" name="review" />
 
-            <Button className="w-1/12 self-end mt-8" type="submit">
+            <Button className="2xl:w-1/12 self-end mt-8" type="submit">
               Post
             </Button>
           </form>
         </section>
       ) : (
-        <Link to={"/signin"} state={{ form: location }} replace={true}>
-          <h2 className="text-lg mt-5 text-primary underline cursor-pointer active:translate-y-1 transition-all">
-            Please login to add a review
-          </h2>
-        </Link>
+        <p>
+          <Link
+            to={"/signin"}
+            state={{ form: location }}
+            replace={true}
+            className="block"
+          >
+            <h2 className="text-lg mt-5 text-primary underline cursor-pointer active:translate-y-1 transition-all ml-5 md:ml-12 2xl:ml-[28rem]">
+              Please login to add a review
+            </h2>
+          </Link>
+        </p>
       )}
     </div>
   );

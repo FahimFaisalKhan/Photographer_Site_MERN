@@ -93,7 +93,7 @@ const SignUpUser = () => {
   return (
     <div>
       <Hero className="min-h-[80vh]">
-        <Hero.Content className="flex-col w-full ">
+        <Hero.Content className="flex-col xl:w-full  max-w-[20rem] sm:max-w-[40rem] md:max-w-[55rem]">
           <div className="text-center lg:text-left">
             <h1 className="text-5xl font-bold mb-5">Please Sign up!</h1>
           </div>

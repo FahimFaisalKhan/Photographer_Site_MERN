@@ -33,7 +33,7 @@ const MyReviews = () => {
           autoClose={1000}
         />
         {myRevs.length > 0 ? (
-          <h1 className="mx-auto mt-16 w-4/12 text-3xl leading-normal">
+          <h1 className="mx-auto mt-16 xl:w-4/12 px-3 text-2xl 2xl:text-3xl leading-normal">
             <span className="font-semibold text-center">
               Hi {user.displayName}!
             </span>
