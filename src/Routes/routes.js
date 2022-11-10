@@ -14,6 +14,7 @@ import SignInUser from "../Pages/SignInUser/SignInUser";
 import SignUpUser from "../Pages/SignUpUser/SignUpUser";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
+// Here are all the Routes this website can navigate to
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<MainLayout />}>
@@ -38,6 +39,7 @@ export const router = createBrowserRouter(
       />
       <Route path="/signup" element={<SignUpUser />} />
       <Route path="/signin" element={<SignInUser />} />
+      {/* Below is the private route which an user can only access if logged in */}
       <Route
         path="/myreviews"
         element={

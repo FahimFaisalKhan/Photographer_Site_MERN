@@ -10,6 +10,8 @@ import { AiOutlineArrowRight, AiOutlineArrowLeft } from "react-icons/ai";
 import "./Home.css";
 import { Avatar, Stats } from "react-daisyui";
 import { useTitle } from "../../hooks/useTitle";
+
+//This is thre Landing page ,, where user will first land when visiting this website .
 const Home = () => {
   useTitle("FC - Home");
   const { response } = useLoaderData();
