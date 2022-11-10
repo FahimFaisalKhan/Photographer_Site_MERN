@@ -1,17 +1,23 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Button, Card, Form, Hero, Input } from "react-daisyui";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { MyAuthContext } from "../../Contexts/AuthContext/AuthContext";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../../Configs/firebase.config";
 import { updateProfile } from "firebase/auth";
 import { useTitle } from "../../hooks/useTitle";
 import Spinner from "../../Components/Spinner/Spinner";
+import toast, { Toaster } from "react-hot-toast";
 const SignUpUser = () => {
   useTitle("FC - Signup");
   const { createUser, loading } = useContext(MyAuthContext);
   const [fileDissbled, setFileDisabled] = useState(false);
   const [urlDisabled, setUrlDisabled] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  console.log(location);
+  const redirectPath = location?.state?.form?.pathname || "/";
+  console.log(redirectPath);
   const handleUrlField = (event) => {
     console.log(event.target.value);
     if (event.target.value.length !== 0) {
@@ -40,7 +46,20 @@ const SignUpUser = () => {
     createUser(email, pass)
       .then((result) => {
         console.log(result.user);
-
+        if (result.user) {
+          fetch("http://localhost:5000/jwt", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify({
+              email: result.user.email,
+            }),
+          })
+            .then((res) => res.json())
+            .then((data) => localStorage.setItem("reviewSiteToken", data.token))
+            .catch((err) => console.log(err.message));
+        }
         updateProfile(result.user, {
           displayName: name,
         });
@@ -57,9 +76,16 @@ const SignUpUser = () => {
               });
             });
           })
+          .then(() => navigate(redirectPath, { replace: true }))
           .catch((e) => console.log(e.message));
       })
-      .catch((err) => console.log(err.message));
+      .catch((e) => {
+        const error = e.message;
+        const parsedError = error
+          .slice(error.indexOf("/") + 1, error.indexOf(")"))
+          .replace("-", " ");
+        toast(parsedError);
+      });
   };
   if (loading) {
     return <Spinner />;
@@ -80,6 +106,7 @@ const SignUpUser = () => {
                   placeholder="name"
                   className="input-bordered"
                   name="name"
+                  required
                 />
                 <Form.Label title="Email" />
                 <Input
@@ -87,6 +114,7 @@ const SignUpUser = () => {
                   placeholder="email"
                   className="input-bordered"
                   name="email"
+                  required
                 />
                 <Form.Label title="Password" />
                 <Input
@@ -94,6 +122,7 @@ const SignUpUser = () => {
                   placeholder="password"
                   className="input-bordered"
                   name="password"
+                  required
                 />
                 <Input
                   type="url"
@@ -122,6 +151,18 @@ const SignUpUser = () => {
                   Sign up
                 </Button>
               </Form>
+              <Toaster
+                toastOptions={{
+                  style: { background: "rgb(239 68 68)" },
+                }}
+              />
+              <p className="ml-1 text-start text-xs font-medium mt-5">
+                Already have an account? please
+                <Link className="text-primary underline ml-1" to={"/signin"}>
+                  Log in
+                </Link>
+                .
+              </p>
             </Card.Body>
           </Card>
         </Hero.Content>

@@ -15,7 +15,7 @@ const ServiceReviews = ({
 
   useEffect(() => {
     fetch(
-      `http://localhost:5000/reviews?serviceId=${serviceId}&email=${user.email}`,
+      `http://localhost:5000/reviews?serviceId=${serviceId}&email=${user?.email}`,
       {
         headers: {
           "content-type": "application/json",
@@ -25,7 +25,7 @@ const ServiceReviews = ({
     )
       .then((res) => res.json())
       .then((data) => setAllReviews(data));
-  }, [serviceId, setAllReviews, user.email]);
+  }, [serviceId, setAllReviews, user?.email]);
   const handleAddReview = (event) => {
     event.preventDefault();
     const review = event.target.review.value;

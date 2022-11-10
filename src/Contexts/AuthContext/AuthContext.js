@@ -34,6 +34,7 @@ const AuthContext = ({ children }) => {
     return signInWithPopup(auth, googleProvider);
   };
   const signOutUser = () => {
+    localStorage.removeItem("reviewSiteToken");
     return signOut(auth);
   };
 
