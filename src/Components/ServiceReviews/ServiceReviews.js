@@ -25,7 +25,7 @@ const ServiceReviews = ({
     )
       .then((res) => res.json())
       .then((data) => setAllReviews(data));
-  }, [serviceId, setAllReviews, user?.email]);
+  }, [serviceId, setAllReviews]);
   const handleAddReview = (event) => {
     event.preventDefault();
     const review = event.target.review.value;
