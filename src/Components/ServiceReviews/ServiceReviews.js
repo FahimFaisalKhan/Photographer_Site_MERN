@@ -86,7 +86,7 @@ const ServiceReviews = ({
         <section className="my-24  ">
           <form
             onSubmit={handleAddReview}
-            className="flex flex-col w-72 ml-[-12rem] sm:ml-[-10rem] sm:w-96 xl:w-[50rem] xl:ml-0 2xl:w-[60rem] 2xl:ml-[27rem]"
+            className="flex flex-col px-5"
             action=""
           >
             <label className="text-xl mb-4 ml-5" htmlFor="review">

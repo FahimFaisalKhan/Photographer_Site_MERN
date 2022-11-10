@@ -48,10 +48,10 @@ const Services = () => {
   return (
     <section className="container mx-auto">
       <header>
-        <h3 className="text-2xl 2xl:text-4xl font-semibold w-full xl:w-6/12 leading-normal  mt-20 px-3  xl:px-0">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum
-          expedita excepturi neque dicta voluptates recusandae asperiores quia
-          tempore. Non quaerat tenetur sed voluptatem quas voluptates.
+        <h3 className="text-2xl 2xl:text-3xl font-semibold w-full xl:w-6/12 leading-normal mt-20 px-3  xl:px-0">
+          My interest in photography is not to capture an image I see or even
+          have in my mind, but to explore the potential of moments I can only
+          begin to imagine. Check out my services and feel free to explore.
         </h3>
       </header>
 

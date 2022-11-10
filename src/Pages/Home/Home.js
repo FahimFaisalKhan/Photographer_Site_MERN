@@ -53,10 +53,11 @@ const Home = () => {
             <FaSquareFull size={25} className="text-base-300 block ml-2" />
           </div>
           <p className="font-semibold">
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi
-            excepturi quia quo, eligendi maxime eveniet ab alias possimus aut.
-            Illum dolore soluta amet eligendi atque consequatur itaque quas
-            incidunt aspernatur."
+            "When a moment in front of me appears to be particularly special,
+            whether it be by beauty or experience, I capture it. I usually find
+            a reason to justify taking that photo - symmetry, or color or
+            contrast - and it's my hope that my photography sheds light onto
+            what I see and do on a daily basis."
           </p>
           <Avatar.Group className="-space-x-6 mt-12">
             <Avatar
