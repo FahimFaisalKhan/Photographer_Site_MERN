@@ -5,8 +5,11 @@ import { MyAuthContext } from "../../Contexts/AuthContext/AuthContext";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../../Configs/firebase.config";
 import { updateProfile } from "firebase/auth";
+import { useTitle } from "../../hooks/useTitle";
+import Spinner from "../../Components/Spinner/Spinner";
 const SignUpUser = () => {
-  const { createUser } = useContext(MyAuthContext);
+  useTitle("FC - Signup");
+  const { createUser, loading } = useContext(MyAuthContext);
   const [fileDissbled, setFileDisabled] = useState(false);
   const [urlDisabled, setUrlDisabled] = useState(false);
   const handleUrlField = (event) => {
@@ -58,6 +61,9 @@ const SignUpUser = () => {
       })
       .catch((err) => console.log(err.message));
   };
+  if (loading) {
+    return <Spinner />;
+  }
   return (
     <div>
       <Hero className="min-h-[80vh]">

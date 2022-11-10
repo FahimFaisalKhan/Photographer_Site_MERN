@@ -14,10 +14,18 @@ const ServiceReviews = ({
   const location = useLocation();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews?serviceId=${serviceId}`)
+    fetch(
+      `http://localhost:5000/reviews?serviceId=${serviceId}&email=${user.email}`,
+      {
+        headers: {
+          "content-type": "application/json",
+          authorization: localStorage.getItem("reviewSiteToken"),
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => setAllReviews(data));
-  }, [serviceId, setAllReviews]);
+  }, [serviceId, setAllReviews, user.email]);
   const handleAddReview = (event) => {
     event.preventDefault();
     const review = event.target.review.value;
@@ -34,11 +42,13 @@ const ServiceReviews = ({
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: localStorage.getItem("reviewSiteToken"),
       },
       body: JSON.stringify(doc),
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         if (data.acknowledged) {
           const newAllReviews = [doc, ...allReviews];
 
@@ -50,19 +60,24 @@ const ServiceReviews = ({
   return (
     <div>
       <div className="flex flex-col gap-12">
-        {allReviews.map((r) => {
-          return (
-            <section className="container mx-auto px-10 py-12 bg-sky-300/30 rounded-md skew-x-[-12deg] ">
-              <div className="flex items-center gap-4 skew-x-12">
-                <img className="w-32 h-32 rounded-full" src={r.image} alt="" />
-                <div className="flex flex-col ">
-                  <h2>{r.name}</h2>
-                  <p>{r.review}</p>
+        {allReviews.length > 0 &&
+          allReviews.map((r) => {
+            return (
+              <section className="container mx-auto px-10 py-12 bg-sky-300/30 rounded-md skew-x-[-12deg] ">
+                <div className="flex items-center gap-4 skew-x-12">
+                  <img
+                    className="w-32 h-32 rounded-full"
+                    src={r.image}
+                    alt=""
+                  />
+                  <div className="flex flex-col ">
+                    <h2>{r.name}</h2>
+                    <p>{r.review}</p>
+                  </div>
                 </div>
-              </div>
-            </section>
-          );
-        })}
+              </section>
+            );
+          })}
       </div>
 
       {user ? (

@@ -1,7 +1,9 @@
 import React from "react";
 import { Button } from "react-daisyui";
 import toast, { Toaster } from "react-hot-toast";
+import { useTitle } from "../../hooks/useTitle";
 const AddService = () => {
+  useTitle("FC - Add services");
   const handleAddService = (event) => {
     event.preventDefault();
     const form = event.target;

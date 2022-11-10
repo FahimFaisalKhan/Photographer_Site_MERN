@@ -3,8 +3,12 @@ import { Button, Card, Form, Hero, Input } from "react-daisyui";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { MyAuthContext } from "../../Contexts/AuthContext/AuthContext";
 import { FcGoogle } from "react-icons/fc";
+import { useTitle } from "../../hooks/useTitle";
+import Spinner from "../../Components/Spinner/Spinner";
 const SignInUser = () => {
-  const { signInWithMail, googleSignIn } = useContext(MyAuthContext);
+  useTitle("FC - Signin");
+  const { signInWithMail, googleSignIn, loading, user } =
+    useContext(MyAuthContext);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -19,6 +23,21 @@ const SignInUser = () => {
 
     signInWithMail(email, pass)
       .then((result) => {
+        if (result.user) {
+          fetch("http://localhost:5000/jwt", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify({
+              email: result.user.email,
+            }),
+          })
+            .then((res) => res.json())
+            .then((data) => localStorage.setItem("reviewSiteToken", data.token))
+            .catch((err) => console.log(err.message));
+        }
+
         navigate(redirectPath, { replace: true });
       })
       .catch((err) => console.log(err.message));
@@ -31,6 +50,9 @@ const SignInUser = () => {
       })
       .catch((err) => console.log(err.message));
   };
+  if (loading) {
+    return <Spinner />;
+  }
   return (
     <div>
       <div>

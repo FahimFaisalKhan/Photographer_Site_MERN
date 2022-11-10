@@ -9,7 +9,9 @@ import { BsArrowUpRight } from "react-icons/bs";
 import { AiOutlineArrowRight, AiOutlineArrowLeft } from "react-icons/ai";
 import "./Home.css";
 import { Avatar, Stats } from "react-daisyui";
+import { useTitle } from "../../hooks/useTitle";
 const Home = () => {
+  useTitle("FC - Home");
   const { response } = useLoaderData();
 
   const [ser, setSer] = useState(response);

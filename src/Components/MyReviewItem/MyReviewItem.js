@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Textarea } from "react-daisyui";
 import { GrEdit } from "react-icons/gr";
 import { MdDelete } from "react-icons/md";
+import { MyAuthContext } from "../../Contexts/AuthContext/AuthContext";
 
 const MyReviewItem = ({ rev, setMyRevs, myRevs, toast }) => {
   const { _id, review, serviceId, serviceName } = rev;
-
+  const { user } = useContext(MyAuthContext);
   const [textAreaVisible, setTextAreaVisible] = useState(false);
   const [currentReview, setCurrentReview] = useState(review);
   const handleEditReview = (event) => {
@@ -21,6 +22,7 @@ const MyReviewItem = ({ rev, setMyRevs, myRevs, toast }) => {
         method: "PATCH",
         headers: {
           "content-type": "application/json",
+          authorization: localStorage.getItem("reviewSiteToken"),
         },
         body: JSON.stringify({
           editedReview: editedRev,
@@ -41,6 +43,7 @@ const MyReviewItem = ({ rev, setMyRevs, myRevs, toast }) => {
       method: "DELETE",
       headers: {
         "content-type": "application/json",
+        authorization: localStorage.getItem("reviewSiteToken"),
       },
       body: JSON.stringify({
         revToDelId: _id,

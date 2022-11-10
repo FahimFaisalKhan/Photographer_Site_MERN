@@ -3,15 +3,21 @@ import { Button, Textarea } from "react-daisyui";
 import MyReviewItem from "../../Components/MyReviewItem/MyReviewItem";
 import { MyAuthContext } from "../../Contexts/AuthContext/AuthContext";
 import toast, { Toaster } from "react-hot-toast";
+import { useTitle } from "../../hooks/useTitle";
 
 const MyReviews = () => {
+  useTitle("FC - My Reviews");
   const { user } = useContext(MyAuthContext);
 
   const [myRevs, setMyRevs] = useState([]);
-  const [textAreaVisible, setTextAreaVisible] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews?email=${user?.email}`)
+    fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
+      headers: {
+        "Content-type": "application/json",
+        authorization: localStorage.getItem("reviewSiteToken"),
+      },
+    })
       .then((res) => res.json())
       .then((data) => setMyRevs(data));
   }, [user]);

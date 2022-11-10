@@ -6,7 +6,9 @@ import { VscDebugBreakpointLogUnverified } from "react-icons/vsc";
 import RatingStar from "../../Components/Rating/RatingStar";
 import ServiceReviews from "../../Components/ServiceReviews/ServiceReviews";
 import { MyAuthContext } from "../../Contexts/AuthContext/AuthContext";
+import { useTitle } from "../../hooks/useTitle";
 const ServiceDetails = () => {
+  useTitle("FC - Service Detail");
   const { loading } = useContext(MyAuthContext);
   console.log(loading);
   const [allReviews, setAllReviews] = useState([]);

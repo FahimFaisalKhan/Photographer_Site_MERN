@@ -1,19 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Card, Pagination, Select, Tooltip } from "react-daisyui";
 import { Link, useLoaderData } from "react-router-dom";
 import RatingStar from "../../Components/Rating/RatingStar";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import { GrNext, GrPrevious } from "react-icons/gr";
+import { useTitle } from "../../hooks/useTitle";
+import { MyAuthContext } from "../../Contexts/AuthContext/AuthContext";
+import Spinner from "../../Components/Spinner/Spinner";
 
 const Services = () => {
-  console.log("aaa");
+  useTitle("FC - Services");
+
+  const { loading } = useContext(MyAuthContext);
   const [response, setResponse] = useState([]);
   const [count, setCount] = useState(0);
+  const [serviceLoading, setServiceLoading] = useState(true);
   console.log(typeof count);
   const [perPageItem, setPerPageItem] = useState(5);
   const [numberOfPages, setNumberOfPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
-  console.log(currentPage);
+  console.log(serviceLoading);
   useEffect(() => {
     setNumberOfPages(Math.ceil(count / perPageItem));
     (async () => {
@@ -24,6 +30,7 @@ const Services = () => {
         const { response, count } = await res.json();
         setCount(count);
         setResponse(response);
+        setServiceLoading(false);
       } catch (err) {
         console.log(err.message);
       }
@@ -35,6 +42,9 @@ const Services = () => {
     setPerPageItem(itemCount);
     setCurrentPage(0);
   };
+  if (serviceLoading) {
+    return <Spinner />;
+  }
   return (
     <section className="container mx-auto">
       <header>
