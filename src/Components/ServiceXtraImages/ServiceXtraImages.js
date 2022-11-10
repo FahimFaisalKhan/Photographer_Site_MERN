@@ -21,7 +21,7 @@ const ServiceXtraImages = ({ name, data }) => {
               key={indx}
               src={
                 !isNaN(index)
-                  ? `http://localhost:5000/images/${name}/${pic}.jpg`
+                  ? `https://backend-fahimfaisalkhan.vercel.app/images/${name}/${pic}.jpg`
                   : pic
               }
               alt=""

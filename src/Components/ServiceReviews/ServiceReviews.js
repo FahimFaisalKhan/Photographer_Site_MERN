@@ -15,7 +15,7 @@ const ServiceReviews = ({
 
   useEffect(() => {
     fetch(
-      `http://localhost:5000/reviews?serviceId=${serviceId}&email=${user?.email}`,
+      `https://backend-fahimfaisalkhan.vercel.app/reviews?serviceId=${serviceId}&email=${user?.email}`,
       {
         headers: {
           "content-type": "application/json",
@@ -38,7 +38,7 @@ const ServiceReviews = ({
       serviceName: serviceName,
       image: photoURL,
     };
-    fetch("http://localhost:5000/reviews", {
+    fetch("https://backend-fahimfaisalkhan.vercel.app/reviews", {
       method: "POST",
       headers: {
         "content-type": "application/json",

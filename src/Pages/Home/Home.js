@@ -129,7 +129,7 @@ const Home = () => {
               {ser.map((s) => {
                 return (
                   <img
-                    src={`http://localhost:5000/images/${s.picture}.jpg`}
+                    src={`https://backend-fahimfaisalkhan.vercel.app/images/${s.picture}.jpg`}
                     alt=""
                     className={`w-32 ${
                       rightAnimation

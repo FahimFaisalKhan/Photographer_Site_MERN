@@ -25,7 +25,7 @@ const Services = () => {
     (async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/services?perPageItem=${perPageItem}&currentPage=${currentPage}`
+          `https://backend-fahimfaisalkhan.vercel.app/services?perPageItem=${perPageItem}&currentPage=${currentPage}`
         );
         const { response, count } = await res.json();
         setCount(count);
@@ -81,7 +81,7 @@ const Services = () => {
                 <PhotoView
                   src={
                     !isNaN(ser.index)
-                      ? `http://localhost:5000/images/${ser.picture}.jpg`
+                      ? `https://backend-fahimfaisalkhan.vercel.app/images/${ser.picture}.jpg`
                       : ser.picture
                   }
                   key={ser._id}
@@ -89,7 +89,7 @@ const Services = () => {
                   <Card.Image
                     src={
                       !isNaN(ser.index)
-                        ? `http://localhost:5000/images/${ser.picture}.jpg`
+                        ? `https://backend-fahimfaisalkhan.vercel.app/images/${ser.picture}.jpg`
                         : ser.picture
                     }
                     alt="Shoes"

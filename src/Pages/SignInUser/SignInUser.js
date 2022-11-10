@@ -26,7 +26,7 @@ const SignInUser = () => {
     signInWithMail(email, pass)
       .then((result) => {
         if (result.user) {
-          fetch("http://localhost:5000/jwt", {
+          fetch("https://backend-fahimfaisalkhan.vercel.app/jwt", {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -55,7 +55,7 @@ const SignInUser = () => {
     googleSignIn()
       .then((result) => {
         if (result.user) {
-          fetch("http://localhost:5000/jwt", {
+          fetch("https://backend-fahimfaisalkhan.vercel.app/jwt", {
             method: "POST",
             headers: {
               "content-type": "application/json",

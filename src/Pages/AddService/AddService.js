@@ -30,7 +30,7 @@ const AddService = () => {
     if (ap2) {
       serToAdd.ap2 = ap2;
     }
-    fetch("http://localhost:5000/services", {
+    fetch("https://backend-fahimfaisalkhan.vercel.app/services", {
       method: "POST",
       headers: {
         "content-type": "application/json",

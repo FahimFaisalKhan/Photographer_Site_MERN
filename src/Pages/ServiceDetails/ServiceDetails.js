@@ -22,7 +22,7 @@ const ServiceDetails = () => {
       <Hero
         style={{
           backgroundImage: !isNaN(index)
-            ? `url(http://localhost:5000/images/${picture}.jpg)`
+            ? `url(https://backend-fahimfaisalkhan.vercel.app/images/${picture}.jpg)`
             : `url(${picture})`,
         }}
       >
