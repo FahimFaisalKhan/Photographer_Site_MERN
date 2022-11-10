@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Button, Textarea } from "react-daisyui";
 import { Link, Navigate, useLocation } from "react-router-dom";
 import { MyAuthContext } from "../../Contexts/AuthContext/AuthContext";
+import Spinner from "../Spinner/Spinner";
 
 const ServiceReviews = ({
   serviceId,
@@ -10,7 +11,7 @@ const ServiceReviews = ({
   setAllReviews,
 }) => {
   const { user } = useContext(MyAuthContext);
-
+  const [reviewLoading, setReviewLoading] = useState(true);
   const location = useLocation();
 
   useEffect(() => {
@@ -24,7 +25,10 @@ const ServiceReviews = ({
       }
     )
       .then((res) => res.json())
-      .then((data) => setAllReviews(data));
+      .then((data) => {
+        setReviewLoading(false);
+        setAllReviews(data);
+      });
   }, [serviceId, setAllReviews]);
   const handleAddReview = (event) => {
     event.preventDefault();
@@ -60,21 +64,29 @@ const ServiceReviews = ({
   return (
     <div>
       <div className="flex flex-col gap-12">
-        {allReviews.map((r) => {
-          return (
-            <section className="container mx-auto px-10 py-12 bg-sky-300/30 rounded-md skew-x-[-12deg] ">
-              <div className="flex items-center gap-4 skew-x-12">
-                <img className="w-32 h-32 rounded-full" src={r.image} alt="" />
-                <div className="flex flex-col h-full self-start mt-3">
-                  <h2 className="mb-2 text-lg font-semibold underline decoration-double">
-                    {r.name}
-                  </h2>
-                  <p>{r.review}</p>
+        {reviewLoading ? (
+          <Spinner />
+        ) : (
+          allReviews.map((r) => {
+            return (
+              <section className="container mx-auto px-10 py-12 bg-sky-300/30 rounded-md skew-x-[-12deg] ">
+                <div className="flex items-center gap-4 skew-x-12">
+                  <img
+                    className="w-32 h-32 rounded-full"
+                    src={r.image}
+                    alt=""
+                  />
+                  <div className="flex flex-col h-full self-start mt-3">
+                    <h2 className="mb-2 text-lg font-semibold underline decoration-double">
+                      {r.name}
+                    </h2>
+                    <p>{r.review}</p>
+                  </div>
                 </div>
-              </div>
-            </section>
-          );
-        })}
+              </section>
+            );
+          })
+        )}
       </div>
 
       {user ? (
