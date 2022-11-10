@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { BiSearch } from "react-icons/bi";
 import "./Navigation.css";
 import { MyAuthContext } from "../../Contexts/AuthContext/AuthContext";
+import camLogo from "../../Static/Images/CamLogo.svg";
 const Navigation = () => {
   const { signOutUser, user } = useContext(MyAuthContext);
 
@@ -20,8 +21,8 @@ const Navigation = () => {
     setSearchFieldHidden(!searchFieldHidden);
   };
   return (
-    <Navbar className="container mx-auto">
-      <Navbar.Start className="hidden lg:flex">
+    <Navbar className="container mx-auto flex-wrap">
+      <Navbar.Start className="hidden lg:flex w-[80%] ">
         <Menu horizontal className="p-0">
           {user && (
             <Menu.Item>
@@ -65,7 +66,7 @@ const Navigation = () => {
           </Menu.Item>
         </Menu>
       </Navbar.Start>
-      <Navbar.Center>
+      <Navbar.Center className="w-full justify-between  md:w-[60%] lg:w-[33%] xl:w-auto">
         <Dropdown>
           <Button color="ghost" tabIndex={0} className="lg:hidden">
             <svg
@@ -84,13 +85,46 @@ const Navigation = () => {
             </svg>
           </Button>
           <Dropdown.Menu tabIndex={0} className="w-52 menu-compact mt-3">
-            <Dropdown.Item>Item 1</Dropdown.Item>
-            <Dropdown.Item>Item 2</Dropdown.Item>
+            {user && (
+              <Link to={"/"}>
+                <Avatar shape="circle" size="xs" src={user.photoURL} />
+              </Link>
+            )}
 
-            <Dropdown.Item>Item 3</Dropdown.Item>
+            <Link to={"/"} className="">
+              Home
+            </Link>
+
+            <Link to={"/services"}>Services</Link>
+
+            {!user ? (
+              <>
+                <Link to={"/signin"}>Sign in</Link>
+
+                <Link to={"/signup"}>Sign up</Link>
+              </>
+            ) : (
+              <>
+                <Link to={"/myreviews"}>My Reviews</Link>
+
+                <Link to={"/addservice"}>Add Services</Link>
+
+                <Link onClick={signOutUser} to={"/"}>
+                  Sign out
+                </Link>
+              </>
+            )}
+
+            <Link to={"/blog"}>Blog</Link>
           </Dropdown.Menu>
         </Dropdown>
-        <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+        <Link to={"/"} className="btn btn-ghost normal-case text-xl ">
+          <div className="flex gap-2 text-2xl text-primary">
+            <p>F's</p>
+            <img className="w-[2rem]" src={camLogo} alt="" />
+            <p>C</p>
+          </div>
+        </Link>
       </Navbar.Center>
       <Navbar.End>
         <Input id="nav-search-field" className="h-10 search-anm hidden" />

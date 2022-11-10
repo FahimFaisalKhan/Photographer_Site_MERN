@@ -70,8 +70,10 @@ const ServiceReviews = ({
                     src={r.image}
                     alt=""
                   />
-                  <div className="flex flex-col ">
-                    <h2>{r.name}</h2>
+                  <div className="flex flex-col h-full self-start mt-3">
+                    <h2 className="mb-2 text-lg font-semibold underline decoration-double">
+                      {r.name}
+                    </h2>
                     <p>{r.review}</p>
                   </div>
                 </div>

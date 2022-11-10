@@ -30,7 +30,7 @@ const Carsl = ({ services }) => {
                   <Card.Title className="text-2xl" tag="h2">
                     {ser.name}
                   </Card.Title>
-                  <p className="min-w-[70rem]">
+                  <p>
                     {ser.description.split(" ").length >= 100
                       ? ser.description.split(" ").splice(0, 100).join(" ") +
                         "....."
