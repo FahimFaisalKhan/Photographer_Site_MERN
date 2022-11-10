@@ -60,7 +60,7 @@ const ServiceReviews = ({
   return (
     <div>
       <div className="flex flex-col gap-12">
-        {allReviews.length > 0 &&
+        {
           allReviews.map((r) => {
             return (
               <section className="container mx-auto px-10 py-12 bg-sky-300/30 rounded-md skew-x-[-12deg] ">
