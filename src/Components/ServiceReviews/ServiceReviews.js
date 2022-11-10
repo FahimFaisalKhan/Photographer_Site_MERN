@@ -60,26 +60,21 @@ const ServiceReviews = ({
   return (
     <div>
       <div className="flex flex-col gap-12">
-        {allReviews.length > 0 &&
-          allReviews.map((r) => {
-            return (
-              <section className="container mx-auto px-10 py-12 bg-sky-300/30 rounded-md skew-x-[-12deg] ">
-                <div className="flex items-center gap-4 skew-x-12">
-                  <img
-                    className="w-32 h-32 rounded-full"
-                    src={r.image}
-                    alt=""
-                  />
-                  <div className="flex flex-col h-full self-start mt-3">
-                    <h2 className="mb-2 text-lg font-semibold underline decoration-double">
-                      {r.name}
-                    </h2>
-                    <p>{r.review}</p>
-                  </div>
+        {allReviews.map((r) => {
+          return (
+            <section className="container mx-auto px-10 py-12 bg-sky-300/30 rounded-md skew-x-[-12deg] ">
+              <div className="flex items-center gap-4 skew-x-12">
+                <img className="w-32 h-32 rounded-full" src={r.image} alt="" />
+                <div className="flex flex-col h-full self-start mt-3">
+                  <h2 className="mb-2 text-lg font-semibold underline decoration-double">
+                    {r.name}
+                  </h2>
+                  <p>{r.review}</p>
                 </div>
-              </section>
-            );
-          })}
+              </div>
+            </section>
+          );
+        })}
       </div>
 
       {user ? (
