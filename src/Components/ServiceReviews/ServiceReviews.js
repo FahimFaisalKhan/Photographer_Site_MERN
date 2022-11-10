@@ -77,10 +77,9 @@ const ServiceReviews = ({
                     <p>{r.review}</p>
                   </div>
                 </div>
-              </div>
-            </section>
-          );
-        })}
+              </section>
+            );
+          })}
       </div>
 
       {user ? (
