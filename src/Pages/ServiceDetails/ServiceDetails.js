@@ -11,7 +11,7 @@ const ServiceDetails = () => {
   console.log(loading);
   const [allReviews, setAllReviews] = useState([]);
   const data = useLoaderData();
-  const { name, picture, description, price, reating, _id } = data;
+  const { name, picture, description, price, reating, _id, index } = data;
   if (loading) {
     return <div>Loading....</div>;
   }
@@ -19,7 +19,9 @@ const ServiceDetails = () => {
     <div>
       <Hero
         style={{
-          backgroundImage: `url(http://localhost:5000/images/${picture}.jpg)`,
+          backgroundImage: !isNaN(index)
+            ? `url(http://localhost:5000/images/${picture}.jpg)`
+            : `url(${picture})`,
         }}
       >
         <Hero.Overlay className="min-h-[80vh]" />

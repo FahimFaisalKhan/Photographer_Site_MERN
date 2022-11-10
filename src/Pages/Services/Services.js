@@ -69,11 +69,19 @@ const Services = () => {
                 key={ser._id}
               >
                 <PhotoView
-                  src={`http://localhost:5000/images/${ser.picture}.jpg`}
+                  src={
+                    !isNaN(ser.index)
+                      ? `http://localhost:5000/images/${ser.picture}.jpg`
+                      : ser.picture
+                  }
                   key={ser._id}
                 >
                   <Card.Image
-                    src={`http://localhost:5000/images/${ser.picture}.jpg`}
+                    src={
+                      !isNaN(ser.index)
+                        ? `http://localhost:5000/images/${ser.picture}.jpg`
+                        : ser.picture
+                    }
                     alt="Shoes"
                     className="h-full min-w-[60rem] cursor-pointer"
                   />

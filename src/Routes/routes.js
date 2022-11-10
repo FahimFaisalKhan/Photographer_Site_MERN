@@ -4,6 +4,8 @@ import {
   Route,
 } from "react-router-dom";
 import MainLayout from "../Layout/MainLayout";
+import AddService from "../Pages/AddService/AddService";
+import Blog from "../Pages/Blog/Blog";
 import Home from "../Pages/Home/Home";
 import MyReviews from "../Pages/MyReviews/MyReviews";
 import ServiceDetails from "../Pages/ServiceDetails/ServiceDetails";
@@ -44,6 +46,15 @@ export const router = createBrowserRouter(
           </PrivateRoute>
         }
       />
+      <Route
+        path="/addservice"
+        element={
+          <PrivateRoute>
+            <AddService />
+          </PrivateRoute>
+        }
+      />
+      <Route path="/blog" element={<Blog />} />
     </Route>
   )
 );

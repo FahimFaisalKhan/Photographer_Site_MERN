@@ -53,13 +53,16 @@ const Navigation = () => {
                 <Link to={"/myreviews"}>My Reviews</Link>
               </Menu.Item>
               <Menu.Item>
-                <Link to={"/"}>Add Services</Link>
+                <Link to={"/addservice"}>Add Services</Link>
               </Menu.Item>
               <Menu.Item onClick={signOutUser}>
                 <Link to={"/"}>Sign out</Link>
               </Menu.Item>
             </>
           )}
+          <Menu.Item>
+            <Link to={"/blog"}>Blog</Link>
+          </Menu.Item>
         </Menu>
       </Navbar.Start>
       <Navbar.Center>
