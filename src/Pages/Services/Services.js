@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Button, Card, Pagination, Select, Tooltip } from "react-daisyui";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useLocation } from "react-router-dom";
 import RatingStar from "../../Components/Rating/RatingStar";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import { GrNext, GrPrevious } from "react-icons/gr";
@@ -11,21 +11,23 @@ import Spinner from "../../Components/Spinner/Spinner";
 const Services = () => {
   useTitle("FC - Services");
 
-  const { loading } = useContext(MyAuthContext);
   const [response, setResponse] = useState([]);
   const [count, setCount] = useState(0);
   const [serviceLoading, setServiceLoading] = useState(true);
-  console.log(typeof count);
+
   const [perPageItem, setPerPageItem] = useState(5);
   const [numberOfPages, setNumberOfPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
-  console.log(serviceLoading);
+  const { state } = useLocation();
+  console.log(state);
   useEffect(() => {
     setNumberOfPages(Math.ceil(count / perPageItem));
     (async () => {
       try {
         const res = await fetch(
-          `https://backend-fahimfaisalkhan.vercel.app/services?perPageItem=${perPageItem}&currentPage=${currentPage}`
+          `https://backend-fahimfaisalkhan.vercel.app/services?perPageItem=${perPageItem}&currentPage=${currentPage}&search=${
+            state?.search[0].toUpperCase() + state?.search.slice(1)
+          }`
         );
         const { response, count } = await res.json();
         setCount(count);
@@ -35,7 +37,7 @@ const Services = () => {
         console.log(err.message);
       }
     })();
-  }, [count, perPageItem, currentPage]);
+  }, [count, perPageItem, currentPage, state?.search]);
 
   const handlePageNumber = (event) => {
     const itemCount = +event.target.value;

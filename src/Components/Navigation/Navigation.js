@@ -1,24 +1,53 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Avatar, Button, Dropdown, Input, Menu, Navbar } from "react-daisyui";
-import { Link } from "react-router-dom";
+import {
+  Avatar,
+  Button,
+  Dropdown,
+  Form,
+  Input,
+  Menu,
+  Navbar,
+} from "react-daisyui";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { BiSearch } from "react-icons/bi";
 import "./Navigation.css";
 import { MyAuthContext } from "../../Contexts/AuthContext/AuthContext";
 import camLogo from "../../Static/Images/CamLogo.svg";
 const Navigation = () => {
   const { signOutUser, user } = useContext(MyAuthContext);
-
-  const [searchFieldHidden, setSearchFieldHidden] = useState(true);
-  useEffect(() => {
-    const field = document.getElementById("nav-search-field");
-    if (!searchFieldHidden) {
-      field.classList.remove("hidden");
-    } else {
-      field.classList.add("hidden");
+  const navigate = useNavigate();
+  const [searchFieldHidden, setSearchFieldHidden] = useState(false);
+  // useEffect(() => {
+  //   const field = document.getElementById("nav-search-field");
+  //   if (!searchFieldHidden) {
+  //     field.classList.remove("hidden");
+  //   } else {
+  //     field.classList.add("hidden");
+  //   }
+  // }, [searchFieldHidden]);
+  const handleSearchField = (event) => {
+    //
+    const targetElement = event.target.tagName;
+    const searchField = document.getElementById("nav-search-field");
+    console.log(targetElement === "BUTTON");
+    if (
+      (targetElement === "BUTTON" ||
+        targetElement === "svg" ||
+        targetElement === "path") &&
+      searchField.value === ""
+    ) {
+      setSearchFieldHidden(!searchFieldHidden);
+    } else if (
+      targetElement === "BUTTON" ||
+      targetElement === "svg" ||
+      targetElement === "path" ||
+      event.key === "Enter"
+    ) {
+      navigate("/services", {
+        replace: true,
+        state: { search: searchField.value },
+      });
     }
-  }, [searchFieldHidden]);
-  const handleSearchFieldAnm = () => {
-    setSearchFieldHidden(!searchFieldHidden);
   };
   return (
     <Navbar className="container mx-auto flex-wrap">
@@ -127,10 +156,15 @@ const Navigation = () => {
         </Link>
       </Navbar.Center>
       <Navbar.End>
-        <Input id="nav-search-field" className="h-10 search-anm hidden" />
+        <Input
+          id="nav-search-field"
+          className={`h-10 search-anm ${searchFieldHidden && "hidden"} `}
+          name="search"
+          onKeyUp={handleSearchField}
+        />
         <Button
           className="bg-transparent hover:bg-transparent border-none text-base-content text-lg"
-          onClick={handleSearchFieldAnm}
+          onClick={handleSearchField}
         >
           <BiSearch />
         </Button>
