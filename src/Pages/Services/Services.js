@@ -26,7 +26,7 @@ const Services = () => {
     (async () => {
       try {
         let res;
-        console.log(state);
+
         if (state && state?.search !== "") {
           res = await fetch(
             `https://backend-fahimfaisalkhan.vercel.app/services?perPageItem=${perPageItem}&currentPage=${currentPage}&search=${
@@ -41,6 +41,7 @@ const Services = () => {
         }
 
         const { response, count } = await res.json();
+        console.log(response, count);
         setCount(count);
         setResponse(response);
         setServiceLoading(false);

@@ -42,6 +42,8 @@ const SignUpUser = () => {
     const email = form.email.value;
     const pass = form.password.value;
     const image = form.file.files[0];
+    const urlImage = form.imageURL.value;
+    console.log(image, urlImage);
 
     createUser(email, pass)
       .then((result) => {
@@ -63,21 +65,29 @@ const SignUpUser = () => {
         updateProfile(result.user, {
           displayName: name,
         });
-        const imageRef = ref(storage, `users/${result.user.uid}/profile.jpg`);
-        uploadBytes(imageRef, image)
-          .then((snapshot) => {
-            console.log("Uploaded a blob or file!");
-          })
-          .then(() => {
-            getDownloadURL(imageRef).then((url) => {
-              console.log(url);
-              updateProfile(result.user, {
-                photoURL: url,
+        if (image) {
+          const imageRef = ref(storage, `users/${result.user.uid}/profile.jpg`);
+          uploadBytes(imageRef, image)
+            .then((snapshot) => {
+              console.log("Uploaded a blob or file!");
+            })
+            .then(() => {
+              getDownloadURL(imageRef).then((url) => {
+                console.log(url);
+                updateProfile(result.user, {
+                  photoURL: url,
+                });
               });
-            });
-          })
-          .then(() => navigate(redirectPath, { replace: true }))
-          .catch((e) => console.log(e.message));
+            })
+            .then(() => navigate(redirectPath, { replace: true }))
+            .catch((e) => console.log(e.message));
+        }
+        if (urlImage) {
+          updateProfile(result.user, {
+            photoURL: urlImage,
+          });
+          navigate(redirectPath, { replace: true });
+        }
       })
       .catch((e) => {
         const error = e.message;
