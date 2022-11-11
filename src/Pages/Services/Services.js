@@ -19,16 +19,27 @@ const Services = () => {
   const [numberOfPages, setNumberOfPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const { state } = useLocation();
-  console.log(state);
+
   useEffect(() => {
     setNumberOfPages(Math.ceil(count / perPageItem));
+
     (async () => {
       try {
-        const res = await fetch(
-          `https://backend-fahimfaisalkhan.vercel.app/services?perPageItem=${perPageItem}&currentPage=${currentPage}&search=${
-            state?.search[0].toUpperCase() + state?.search.slice(1)
-          }`
-        );
+        let res;
+        console.log(state);
+        if (state && state?.search !== "") {
+          res = await fetch(
+            `https://backend-fahimfaisalkhan.vercel.app/services?perPageItem=${perPageItem}&currentPage=${currentPage}&search=${
+              state?.search[0]?.toUpperCase() + state?.search?.slice(1)
+            }`
+          );
+        } else {
+          res = await fetch(
+            `https://backend-fahimfaisalkhan.vercel.app/services?perPageItem=${perPageItem}&currentPage=${currentPage}
+              }`
+          );
+        }
+
         const { response, count } = await res.json();
         setCount(count);
         setResponse(response);
@@ -37,7 +48,7 @@ const Services = () => {
         console.log(err.message);
       }
     })();
-  }, [count, perPageItem, currentPage, state?.search]);
+  }, [count, perPageItem, currentPage, state?.search, state]);
 
   const handlePageNumber = (event) => {
     const itemCount = +event.target.value;
