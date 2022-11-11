@@ -16,7 +16,7 @@ const Carsl = ({ services }) => {
               <Card side="lg" className={index === 1 && styles.reverse}>
                 <figure className={styles.figure}>
                   <img
-                    src={`http://localhost:5000/images/${ser.picture}.jpg`}
+                    src={`https://backend-fahimfaisalkhan.vercel.app/images/${ser.picture}.jpg`}
                     alt="Shoes"
                     className={`${
                       index === 1

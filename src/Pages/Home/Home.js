@@ -10,6 +10,8 @@ import { AiOutlineArrowRight, AiOutlineArrowLeft } from "react-icons/ai";
 import "./Home.css";
 import { Avatar, Stats } from "react-daisyui";
 import { useTitle } from "../../hooks/useTitle";
+
+//This is thre Landing page ,, where user will first land when visiting this website .
 const Home = () => {
   useTitle("FC - Home");
   const { response } = useLoaderData();
@@ -17,6 +19,8 @@ const Home = () => {
   const [ser, setSer] = useState(response);
   const [rightAnimation, setRightAnimation] = useState(false);
   const [leftAnimation, setLeftAnimation] = useState(false);
+
+  const [demoRevs, setDemoRevs] = useState([]);
 
   const handleRightCrsl = () => {
     setRightAnimation(true);
@@ -42,6 +46,10 @@ const Home = () => {
     );
 
     tween.start();
+
+    fetch("https://backend-fahimfaisalkhan.vercel.app/first3reviews")
+      .then((res) => res.json())
+      .then((data) => setDemoRevs(data));
   }, []);
 
   return (
@@ -60,22 +68,10 @@ const Home = () => {
             what I see and do on a daily basis."
           </p>
           <Avatar.Group className="-space-x-6 mt-12">
-            <Avatar
-              shape="circle"
-              src="http://daisyui.com/tailwind-css-component-profile-1@94w.png"
-              size="sm"
-            />
-            <Avatar
-              className=""
-              shape="circle"
-              src="http://daisyui.com/tailwind-css-component-profile-1@94w.png"
-              size="sm"
-            />
-            <Avatar
-              shape="circle"
-              src="http://daisyui.com/tailwind-css-component-profile-1@94w.png"
-              size="sm"
-            />
+            {demoRevs.map((r) => (
+              <Avatar shape="circle" src={r.image} size="sm" />
+            ))}
+
             <Avatar
               shape="circle"
               className="bg-base-content cursor-pointer border-base-content scale-[.92] active:scale-[.8] transition-all"
@@ -93,7 +89,7 @@ const Home = () => {
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="100%"
-            height="400"
+            height="600"
             version="1.1"
             viewBox="0 0 900 600"
           >
@@ -117,7 +113,7 @@ const Home = () => {
           <img
             src={photographer}
             alt=""
-            className="absolute  top-[54%] sm:top-[54.5%] md:top-[60%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-[80%] sm:w-[44%] rounded-full"
+            className="absolute  top-[54%] sm:top-[54.5%] md:top-[60%] lg:top-[49.5%] xl:top-[54.45%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-[80%] sm:w-[44%] rounded-full"
           />
         </div>
         <div className="xl:w-[20%] flex flex-col justify-center gap-2 order-3 xl:order-none px-5 md:px-12">
@@ -127,7 +123,7 @@ const Home = () => {
               {ser.map((s) => {
                 return (
                   <img
-                    src={`http://localhost:5000/images/${s.picture}.jpg`}
+                    src={`https://backend-fahimfaisalkhan.vercel.app/images/${s.picture}.jpg`}
                     alt=""
                     className={`w-32 ${
                       rightAnimation

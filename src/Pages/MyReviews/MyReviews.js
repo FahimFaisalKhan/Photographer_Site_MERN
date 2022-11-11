@@ -12,12 +12,15 @@ const MyReviews = () => {
   const [myRevs, setMyRevs] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
-      headers: {
-        "Content-type": "application/json",
-        authorization: localStorage.getItem("reviewSiteToken"),
-      },
-    })
+    fetch(
+      `https://backend-fahimfaisalkhan.vercel.app/reviews?email=${user?.email}`,
+      {
+        headers: {
+          "Content-type": "application/json",
+          authorization: localStorage.getItem("reviewSiteToken"),
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => setMyRevs(data));
   }, [user]);

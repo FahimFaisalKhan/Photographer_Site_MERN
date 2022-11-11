@@ -18,7 +18,7 @@ const MyReviewItem = ({ rev, setMyRevs, myRevs, toast }) => {
     if (textAreaVisible === true) {
       const editedRev = event.target.editedRev.value;
       console.log(editedRev);
-      fetch(`http://localhost:5000/reviews`, {
+      fetch(`https://backend-fahimfaisalkhan.vercel.app/reviews`, {
         method: "PATCH",
         headers: {
           "content-type": "application/json",
@@ -39,7 +39,7 @@ const MyReviewItem = ({ rev, setMyRevs, myRevs, toast }) => {
   };
 
   const handleDeleteReview = () => {
-    fetch(`http://localhost:5000/deleteReview`, {
+    fetch(`https://backend-fahimfaisalkhan.vercel.app/deleteReview`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",
