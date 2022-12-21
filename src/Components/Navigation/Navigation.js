@@ -17,14 +17,7 @@ const Navigation = () => {
   const { signOutUser, user } = useContext(MyAuthContext);
   const navigate = useNavigate();
   const [searchFieldHidden, setSearchFieldHidden] = useState(false);
-  // useEffect(() => {
-  //   const field = document.getElementById("nav-search-field");
-  //   if (!searchFieldHidden) {
-  //     field.classList.remove("hidden");
-  //   } else {
-  //     field.classList.add("hidden");
-  //   }
-  // }, [searchFieldHidden]);
+
   const handleSearchField = (event) => {
     //
     const targetElement = event.target.tagName;

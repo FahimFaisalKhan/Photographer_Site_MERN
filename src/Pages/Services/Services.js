@@ -152,9 +152,17 @@ const Services = () => {
           >
             <GrPrevious />
           </Button>
+
           {[...Array(numberOfPages).keys()].map((item) => {
             return (
-              <Button onClick={() => setCurrentPage(item)}>{item + 1}</Button>
+              <Button
+                onClick={() => setCurrentPage(item)}
+                className={` ${
+                  currentPage == item && "bg-primary"
+                }  focus:bg-primary`}
+              >
+                {item + 1}
+              </Button>
             );
           })}
           <Button
