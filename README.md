@@ -7,6 +7,10 @@ Fahim's Capture
 • For authentication I used google's firebase authentication service.
 • Also to store user's image in cloud I used fire-storage.
 
-• Livi site Link: https://review-site-auth.web.app/
+• Live site Link: https://review-site-auth.web.app/
 
+<<<<<<< HEAD
 kola
+=======
+- Live test
+>>>>>>> c2dfdf986b862793a2eb9d00f4517817070f14a7
