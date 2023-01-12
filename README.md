@@ -9,8 +9,4 @@ Fahim's Capture
 
 • Live site Link: https://review-site-auth.web.app/
 
-<<<<<<< HEAD
-kola
-=======
-- Live test
->>>>>>> c2dfdf986b862793a2eb9d00f4517817070f14a7
+koko
