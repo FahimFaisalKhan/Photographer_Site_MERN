@@ -64,7 +64,7 @@ const ServiceReviews = ({
           return (
             <section className="container mx-auto px-10 py-12 bg-sky-300/30 rounded-md xl:skew-x-[-12deg] ">
               <div className="flex flex-col md:flex-row  items-center gap-4 xl:skew-x-12">
-                <Avatar shape="circle" src={r.image} />
+                <Avatar size={"lg"} shape="circle" src={r.image} />
 
                 <div className="flex flex-col   h-full self-start mt-3">
                   <h2 className="mb-2 text-lg font-semibold underline decoration-double">
@@ -104,7 +104,7 @@ const ServiceReviews = ({
             replace={true}
             className="block"
           >
-            <h2 className="text-lg mt-5 text-primary underline cursor-pointer active:translate-y-1 transition-all ml-5 md:ml-12 2xl:ml-[28rem]">
+            <h2 className="text-lg mt-5 text-primary underline cursor-pointer active:translate-y-1 transition-all">
               Please login to add a review
             </h2>
           </Link>

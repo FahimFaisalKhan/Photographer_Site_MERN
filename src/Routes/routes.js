@@ -15,6 +15,8 @@ import SignUpUser from "../Pages/SignUpUser/SignUpUser";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import Checkout from "../Pages/Checkout/Checkout";
+import Quantity from "../Pages/Quantity/Quantity";
 
 // Here are all the Routes this website can navigate to
 export const router = createBrowserRouter(
@@ -61,6 +63,27 @@ export const router = createBrowserRouter(
         element={
           <PrivateRoute>
             <AddService />
+          </PrivateRoute>
+        }
+      />
+      {/* <Route
+        path="/checkout"
+        element={
+          <PrivateRoute>
+            <Checkout />
+          </PrivateRoute>
+        }
+      ></Route> */}
+      <Route
+        path="/quantity/:id"
+        loader={({ params }) =>
+          fetch(
+            `https://backend-fahimfaisalkhan.vercel.app/services/${params.id}`
+          )
+        }
+        element={
+          <PrivateRoute>
+            <Quantity />
           </PrivateRoute>
         }
       />

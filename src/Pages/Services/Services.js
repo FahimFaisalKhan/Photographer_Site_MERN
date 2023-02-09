@@ -86,10 +86,10 @@ const Services = () => {
         <PhotoProvider>
           {response.map((ser) => {
             return (
-              <Card
+              <div
                 side="lg"
                 bordered={false}
-                className="shadow-inner  hover:border-4 rounded-md transition-all xl:max-h-[80vh] mx-3 xl:mx-0"
+                className="card shadow-inner hover:border-4 rounded-md transition-all xl:max-h-[80vh] mx-3 xl:mx-0 xl:card-side "
                 key={ser._id}
               >
                 <PhotoView
@@ -107,7 +107,7 @@ const Services = () => {
                         : ser.picture
                     }
                     alt="Shoes"
-                    className="xl:h-full xl:min-w-[60rem] cursor-pointer"
+                    className="xl:h-full xl:min-w-[60rem] cursor-pointer max-h-[25rem] 2xl:max-h-[none]"
                   />
                 </PhotoView>
 
@@ -121,31 +121,46 @@ const Services = () => {
                   </p>
                   <Card.Actions className="justify-start">
                     <Link to={`/services/${ser._id}`}>
-                      <Button className="capitalize" color="primary">
+                      <Button className="capitalize" color="info">
                         View Details
                       </Button>
                     </Link>
                   </Card.Actions>
                 </Card.Body>
-                <Card.Body className="px-3 xl:px-6">
-                  <div className="px-2">
+                <Card.Body className="px-3 xl:px-6 2xl:w-[30%]">
+                  <div className="px-2 flex flex-col items-center">
                     <p className="font-medium mb-3 text-center">
                       Rating: {ser.reating}
                     </p>
                     <RatingStar rating={ser.reating} />
                   </div>
 
-                  <p className="py-6 px-2 font-semibold text-primary text-xl text-center">
-                    Price: ${ser.price}
+                  <p className="py-6 px-2  text-center inline-flex flex-col">
+                    <span className="font-semibold text-primary text-xl">
+                      Price per photo: ${ser.price}
+                    </span>
+                    <i className="">
+                      Price may vary depending on product/location. Please get
+                      in touch to discuss further.
+                    </i>
                   </p>
+                  <Link to={`/quantity/${ser._id}`} className="block w-full">
+                    <Button
+                      fullWidth={true}
+                      className="capitalize"
+                      color="primary"
+                    >
+                      Buy
+                    </Button>
+                  </Link>
                 </Card.Body>
-              </Card>
+              </div>
             );
           })}
         </PhotoProvider>
       </div>
       {numberOfPages > 0 && (
-        <Pagination className="flex justify-center mt-10">
+        <Pagination className="flex justify-center my-10">
           <Button
             disabled={currentPage === 0 && true}
             onClick={() => setCurrentPage(currentPage - 1)}
@@ -158,8 +173,8 @@ const Services = () => {
               <Button
                 onClick={() => setCurrentPage(item)}
                 className={` ${
-                  currentPage == item && "bg-primary"
-                }  focus:bg-primary`}
+                  currentPage === item && "bg-info "
+                }  focus:bg-info border-none`}
               >
                 {item + 1}
               </Button>

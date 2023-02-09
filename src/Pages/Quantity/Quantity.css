@@ -1,0 +1,18 @@
+.number-field {
+  border: none;
+}
+.number-field:focus-visible {
+  border: transparent;
+}
+.number-field:focus {
+  border: transparent;
+  outline: none;
+}
+.error {
+  color: #bf1650;
+  margin-top: 1rem;
+}
+.error::before {
+  display: inline;
+  content: "⚠ ";
+}

@@ -5,11 +5,13 @@ import Navigation from "../Components/Navigation/Navigation";
 
 const MainLayout = () => {
   return (
-    <section>
-      <Navigation></Navigation>
-      <Outlet></Outlet>
+    <>
+      <section className="min-h-[100vh]">
+        <Navigation></Navigation>
+        <Outlet></Outlet>
+      </section>
       <MyFooter />
-    </section>
+    </>
   );
 };
 

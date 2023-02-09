@@ -65,12 +65,14 @@ const MyReviewItem = ({ rev, setMyRevs, myRevs, toast }) => {
         <h1 className="  text-2xl capitalize">{serviceName} </h1>
       </div>
       <div className="w-3/5">
-        <p className={`py-12 xl:pr-44 ${textAreaVisible && "hidden"} `}>
+        <p
+          className={` mx-auto py-12 xl:px-44 ${textAreaVisible && "hidden"} `}
+        >
           {currentReview}
         </p>
         <form onSubmit={handleEditReview} action="">
           <Textarea
-            className={`w-full xl:w-3/5 xl:pr-44 min-h-[10rem] ${
+            className={`w-full xl:w-3/5 xl:px-44 min-h-[10rem] ${
               !textAreaVisible && "hidden"
             }`}
             defaultValue={currentReview}

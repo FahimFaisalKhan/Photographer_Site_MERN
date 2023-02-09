@@ -1,16 +1,17 @@
 import React, { useContext, useState } from "react";
-import { Hero, Stats } from "react-daisyui";
-import { useLoaderData } from "react-router-dom";
+import { Button, Hero, Stats } from "react-daisyui";
+import { Link, useLoaderData } from "react-router-dom";
 import ServiceXtraImages from "../../Components/ServiceXtraImages/ServiceXtraImages";
 import { VscDebugBreakpointLogUnverified } from "react-icons/vsc";
 import RatingStar from "../../Components/Rating/RatingStar";
 import ServiceReviews from "../../Components/ServiceReviews/ServiceReviews";
 import { MyAuthContext } from "../../Contexts/AuthContext/AuthContext";
 import { useTitle } from "../../hooks/useTitle";
+import { AiOutlineLine } from "react-icons/ai";
 const ServiceDetails = () => {
   useTitle("FC - Service Detail");
   const { loading } = useContext(MyAuthContext);
-  console.log(loading);
+
   const [allReviews, setAllReviews] = useState([]);
   const data = useLoaderData();
   const { name, picture, description, price, reating, _id, index } = data;
@@ -18,7 +19,7 @@ const ServiceDetails = () => {
     return <div>Loading....</div>;
   }
   return (
-    <div>
+    <div className="">
       <Hero
         style={{
           backgroundImage: !isNaN(index)
@@ -27,12 +28,8 @@ const ServiceDetails = () => {
         }}
       >
         <Hero.Overlay className="min-h-[80vh]" />
-        <Hero.Content className="text-center">
-          <div className="max-w-md">
-            <h1 className="text-7xl text-base-100 font-bold mt-[-5rem] ">
-              {name}
-            </h1>
-          </div>
+        <Hero.Content className="text-center text-6xl md:text-7xl text-base-100 font-bold mt-[-5rem] max-w-[100vw] ">
+          {name}
         </Hero.Content>
       </Hero>
       <ServiceXtraImages name={name} data={data} />
@@ -67,7 +64,19 @@ const ServiceDetails = () => {
           </Stats.Stat>
         </Stats>
       </section>
-      <section className="xl:mx-52 my-32">
+      <section className="container mx-auto   flex justify-center">
+        <Link to={`/quantity/${_id}`} className="w-full  xl:max-w-[85%]">
+          <Button className="" fullWidth={true} color="primary">
+            Buy
+          </Button>
+        </Link>
+      </section>
+      <section className="flex text-5xl  container xl:mx-52  mb-5 mt-32 px-5 md:px-12 xl:px-20">
+        <AiOutlineLine size={80} className="mt-[-13px] md:block hidden " />
+
+        <h2 className="font-semibold">Reviews</h2>
+      </section>
+      <section className="xl:mx-60 mb-32">
         <ServiceReviews
           allReviews={allReviews}
           setAllReviews={setAllReviews}

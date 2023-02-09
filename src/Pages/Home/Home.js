@@ -12,6 +12,11 @@ import { Avatar, Stats } from "react-daisyui";
 import { useTitle } from "../../hooks/useTitle";
 
 import Spinner from "../../Components/Spinner/Spinner";
+import Checkout from "../Checkout/Checkout";
+import WhyChoose from "../../Components/WhyChoose/WhyChoose";
+import Philosophy from "../../Components/Philosophy/Philosophy";
+import Counter from "../../Components/Counter/Counter";
+import Faq from "../../Components/Faq/Faq";
 
 //This is thre Landing page ,, where user will first land when visiting this website .
 const Home = () => {
@@ -180,6 +185,10 @@ const Home = () => {
         </div>
         <Banner></Banner>
         <PopServices services={response}></PopServices>
+        <WhyChoose />
+        <Philosophy />
+        <Counter />
+        <Faq />
       </div>
     );
   }
