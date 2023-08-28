@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./CheckoutForm";
+import PayPal from "./PayPal";
 
 const stripePromise = loadStripe(
   "pk_test_51M6B8WJadxoSok6rP7xOLQyV9RiDByKov3LfMxhvG31cZthRWb9RSXG25tRHu6t3ZSxsu2KBXin2otK9qbJqBBkA009ivvMzc1"
@@ -37,6 +38,7 @@ export default function Checkout() {
             <CheckoutForm />
           </Elements>
         )}
+        <PayPal />
       </div>
     </div>
   );

@@ -5,19 +5,19 @@ const WhyChooseCard = ({ feature, set, index }) => {
 
   const span =
     set === "first" && index === 3
-      ? "col-span-2"
+      ? "xl:col-span-2"
       : set === "second" && index === 0
-      ? "col-span-2"
+      ? "xl:col-span-2"
       : set === "second" && index === 2
-      ? "col-span-3"
+      ? "xl:col-span-3"
       : set === "third" && (index === 1 || index === 2)
-      ? "col-span-2"
+      ? "xl:col-span-2"
       : "";
   return (
     <div
-      className={`${span}  flex flex-col items-start rounded-sm bg-slate-100`}
+      className={` ${span}  flex flex-col items-start rounded-sm bg-slate-100`}
     >
-      <div className="w-full h-[20.5rem] overflow-hidden rounded-sm  bg-black">
+      <div className="w-full h-[20.5rem] overflow-hidden rounded-sm  bg-black flex justify-center items-center">
         <img
           className="block min-w-[100%]  rounded-t-sm hover:opacity-[.75] transition-opacity"
           src={img}

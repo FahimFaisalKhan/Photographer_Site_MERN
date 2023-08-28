@@ -66,14 +66,14 @@ export const router = createBrowserRouter(
           </PrivateRoute>
         }
       />
-      {/* <Route
+      <Route
         path="/checkout"
         element={
           <PrivateRoute>
             <Checkout />
           </PrivateRoute>
         }
-      ></Route> */}
+      ></Route>
       <Route
         path="/quantity/:id"
         loader={({ params }) =>

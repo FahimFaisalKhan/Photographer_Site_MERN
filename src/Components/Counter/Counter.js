@@ -11,7 +11,7 @@ const Counter = () => {
         the technology. Our photographers bring a creative eye and attention to
         detail to every shoot.
       </h3>
-      <div className="flex gap-x-10 justify-between">
+      <div className=" flex flex-col gap-y-8 xl:flex-row gap-x-10 justify-between items-center ">
         <div className=" w-[20rem] border-2 border-slate-400 rounded-lg py-4">
           <div className="flex flex-col px-2">
             <div className="flex items-end justify-between px-4 mb-4 ">

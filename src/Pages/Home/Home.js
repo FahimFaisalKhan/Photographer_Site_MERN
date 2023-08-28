@@ -46,13 +46,16 @@ const Home = () => {
   };
 
   useEffect(() => {
-    fetch("https://backend-fahimfaisalkhan.vercel.app/first3reviews")
-      .then((res) => res.json())
-      .then((data) => {
-        setDemoRevs(data);
-        setDataLoading(false);
-      });
+    // fetch("https://backend-fahimfaisalkhan.vercel.app/first3reviews")
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     setDemoRevs(data);
+    // setDataLoading(false);
+    // });
   }, []);
+  useEffect(() => {
+    response.length && setDataLoading(false);
+  }, [response]);
 
   useEffect(() => {
     if (!dataLoading) {
@@ -83,7 +86,7 @@ const Home = () => {
               contrast - and it's my hope that my photography sheds light onto
               what I see and do on a daily basis."
             </p>
-            <Avatar.Group className="-space-x-6 mt-12">
+            {/* <Avatar.Group className="-space-x-6 mt-12">
               {demoRevs.map((r) => (
                 <Avatar shape="circle" src={r.image} size="sm" />
               ))}
@@ -95,7 +98,7 @@ const Home = () => {
               >
                 <BsArrowUpRight className="p-3 text-base-300" />
               </Avatar>
-            </Avatar.Group>
+            </Avatar.Group> */}
             <p className="text-sm font-semibold">400+ Customer reviews</p>
           </div>
           <div className="relative grow order-1 xl:order-none">

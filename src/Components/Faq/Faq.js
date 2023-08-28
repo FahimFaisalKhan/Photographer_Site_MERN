@@ -9,10 +9,10 @@ const Faq = () => {
         </h2>
         <div className="flex flex-col divide-y sm:px-8 lg:px-12 xl:px-32 divide-gray-700">
           <details>
-            <summary className="py-2 outline-none cursor-pointer focus:underline">
+            <summary className="py-2 outline-none cursor-pointer focus:underline ">
               How to hire for a photography service?
             </summary>
-            <div className="px-4 pb-4">
+            <div className="px-4 pb-4 transition-all">
               <p>
                 To hire you need to first choose a photography service you want
                 to hire me for. Then you have to select quantity, prefered

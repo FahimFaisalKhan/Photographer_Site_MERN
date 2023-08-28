@@ -1,24 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import "./Quantity.css";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import toast, { Toaster } from "react-hot-toast";
+import bd from "../../Static/Images/bd.svg";
+import us from "../../Static/Images/us.svg";
+import pk from "../../Static/Images/pk.svg";
+import cam from "../../Static/Images/CamLogo.svg";
+import PhoneField from "../../Components/PhoneField/PhoneField";
 const Quantity = () => {
   const {
     register,
     handleSubmit,
+
     formState: { errors },
   } = useForm();
   const service = useLoaderData();
-  console.log(service);
-
-  const [countryCode, setCountryCode] = useState("");
 
   const onSubmit = (data) => {
     console.log(data);
     toast("Paypent options work in progress.");
   };
+
   return (
     <section className="container mx-auto px-6 my-8">
       <Toaster
@@ -31,7 +35,8 @@ const Quantity = () => {
       ;
       <h2 className="text-4xl xl:w-[30rem]">
         {" "}
-        Please fill up below fields in order to confirm a service booking.
+        Please fill up below fields in order to confirm a booking for{" "}
+        {service.name} photography.
       </h2>
       <form
         action=""
@@ -59,41 +64,8 @@ const Quantity = () => {
             className="error"
           />
         </div>
-        <label className="label mt-4">
-          <span className="label-text">Phone</span>
-        </label>
-        <div className=" flex flex-row border-2  rounded-lg ">
-          <select
-            className="rounded-none focus:outline-none p-3 rounded-l-lg text-base-200 bg-gray-700"
-            name=""
-            id=""
-            onChange={(e) => setCountryCode(e.target.value)}
-          >
-            <option selected className="w-full rounded-none" value="+88">
-              Bangladesh
-            </option>
-            <option className="w-full" value="+66">
-              Pakistan
-            </option>
-            <option className="w-full" value="+1">
-              USA
-            </option>
-          </select>
-          <input
-            defaultValue={countryCode || "+88"}
-            className="number-field px-2"
-            type="text"
-            placeholder="number"
-            name="phone"
-            {...register("phone", {
-              required: "this field is required",
-              minLength: {
-                value: 5,
-                message: "error ok",
-              },
-            })}
-          />
-        </div>
+        <PhoneField register={register} />
+
         <ErrorMessage errors={errors} name="phone" as={"p"} className="error" />
         <div className="form-control mt-6">
           <label className="label">

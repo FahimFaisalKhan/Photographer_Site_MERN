@@ -6,6 +6,13 @@ const Philosophy = () => {
       className="hero min-h-[70vh] mb-32"
       style={{
         backgroundImage: `url("http://astiatheme.com/wide-angle/wp-content/uploads/sites/19/demo-image-00039.jpg")`,
+        minHeight: "500px",
+
+        /* Create the parallax "scrolling effect */
+        backgroundAttachment: "fixed",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
       }}
     >
       <div className="hero-overlay bg-opacity-60 bg-black"></div>

@@ -80,17 +80,17 @@ const WhyChoose = () => {
         and bring your story to life.
       </h3>
       <div className="flex flex-col gap-y-4 mt-16">
-        <div className="grid grid-cols-5 gap-x-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-y-4  gap-x-4">
           {features.map((f, i) => (
             <WhyChooseCard set={"first"} feature={f} index={i} />
           ))}
         </div>
-        <div className="grid grid-cols-6 gap-x-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-6 gap-y-4  gap-x-4">
           {features2.map((f, i) => (
             <WhyChooseCard set={"second"} feature={f} index={i} />
           ))}
         </div>
-        <div className="grid grid-cols-5 gap-x-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-y-4  gap-x-4">
           {features3.map((f, i) => (
             <WhyChooseCard set={"third"} feature={f} index={i} />
           ))}
